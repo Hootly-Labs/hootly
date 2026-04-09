@@ -1,0 +1,39 @@
+name: 'Hootly Codebase Analysis'
+description: 'Analyze your codebase with Hootly and get architecture insights, health scores, and PR comments'
+author: 'Hootly Labs'
+
+branding:
+  icon: 'search'
+  color: 'orange'
+
+inputs:
+  api-key:
+    description: 'Your Hootly API key'
+    required: true
+  repo-url:
+    description: 'GitHub repository URL to analyze (defaults to current repo)'
+    required: false
+  fail-on-health-below:
+    description: 'Fail the action if health score is below this threshold (0-100)'
+    required: false
+    default: '0'
+  comment-on-pr:
+    description: 'Post analysis summary as a PR comment'
+    required: false
+    default: 'true'
+  api-url:
+    description: 'Hootly API URL (for self-hosted instances)'
+    required: false
+    default: 'https://hootly-production-0dab.up.railway.app'
+
+outputs:
+  analysis-id:
+    description: 'The ID of the completed analysis'
+  health-score:
+    description: 'The overall health score (0-100)'
+  health-grade:
+    description: 'The health grade (A-F)'
+
+runs:
+  using: 'node20'
+  main: 'index.js'

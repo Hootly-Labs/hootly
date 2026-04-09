@@ -1,0 +1,370 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+}
+
+/* ── Techy utilities ─────────────────────────────────────────────────────── */
+
+/* Gradient headline text */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle dot-grid hero background */
+.hero-grid-bg {
+  background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Card glow on hover */
+.card-hover {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+.card-hover:hover {
+  box-shadow: 0 0 0 1px #3b82f6, 0 8px 24px -4px rgba(59,130,246,0.15);
+  transform: translateY(-1px);
+}
+
+/* Prose-like styles for the onboarding guide markdown */
+.guide-prose h1 { @apply text-2xl font-bold mb-3 mt-6 text-slate-900; }
+.guide-prose h2 { @apply text-xl font-semibold mb-2 mt-5 text-slate-800; }
+.guide-prose h3 { @apply text-lg font-semibold mb-2 mt-4 text-slate-800; }
+.guide-prose p  { @apply mb-3 leading-relaxed text-slate-700; }
+.guide-prose ul { @apply list-disc pl-5 mb-3 space-y-1 text-slate-700; }
+.guide-prose ol { @apply list-decimal pl-5 mb-3 space-y-1 text-slate-700; }
+.guide-prose code {
+  @apply bg-slate-100 text-blue-700 rounded px-1 py-0.5 text-sm font-mono;
+}
+.guide-prose pre {
+  @apply bg-slate-100 rounded-lg p-4 overflow-x-auto mb-3;
+}
+.guide-prose pre code {
+  @apply bg-transparent p-0 text-slate-800;
+}
+.guide-prose strong { @apply font-semibold text-slate-900; }
+.guide-prose blockquote {
+  @apply border-l-4 border-blue-300 pl-4 italic text-slate-600 mb-3;
+}
+
+/* ── Chat panel ─────────────────────────────────────────────────────────── */
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+.animate-slide-in {
+  animation: slide-in-right 0.25s ease-out;
+}
+
+/* Chat prose — markdown in assistant messages */
+.chat-prose p       { margin: 0 0 0.5rem; line-height: 1.5; }
+.chat-prose p:last-child { margin-bottom: 0; }
+.chat-prose ul      { list-style: disc; padding-left: 1.25rem; margin: 0 0 0.5rem; }
+.chat-prose ol      { list-style: decimal; padding-left: 1.25rem; margin: 0 0 0.5rem; }
+.chat-prose li      { margin-bottom: 0.15rem; }
+.chat-prose code    { background: rgba(0,0,0,0.06); border-radius: 3px; padding: 1px 4px; font-size: 0.85em; }
+.chat-prose pre     { background: rgba(0,0,0,0.06); border-radius: 6px; padding: 0.5rem 0.75rem; margin: 0.5rem 0; overflow-x: auto; }
+.chat-prose pre code { background: transparent; padding: 0; }
+.chat-prose h1,.chat-prose h2,.chat-prose h3 { font-weight: 600; margin: 0.5rem 0 0.25rem; }
+.chat-prose strong  { font-weight: 600; }
+.chat-prose blockquote { border-left: 3px solid #93c5fd; padding-left: 0.5rem; margin: 0.5rem 0; font-style: italic; opacity: 0.85; }
+
+.dark .chat-prose code { background: rgba(255,255,255,0.08); }
+.dark .chat-prose pre  { background: rgba(255,255,255,0.06); }
+
+/* ── Logo filter ─────────────────────────────────────────────────────────── */
+.owl-logo {
+  filter: contrast(1.15) saturate(1.1);
+}
+/* Invert logo to white on dark backgrounds */
+.dark .owl-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* ── Dark mode overrides ────────────────────────────────────────────────── */
+.dark body {
+  @apply bg-slate-900 text-slate-100;
+}
+
+/* Hero grid in dark mode */
+.dark .hero-grid-bg {
+  background-image: radial-gradient(circle, rgb(51 65 85 / 0.6) 1px, transparent 1px);
+}
+
+/* Invert card surfaces */
+.dark .bg-white    { background-color: rgb(30 41 59)  !important; }  /* slate-800 */
+.dark .bg-slate-50 { background-color: rgb(15 23 42)  !important; }  /* slate-950 */
+.dark .bg-slate-100{ background-color: rgb(51 65 85)  !important; }  /* slate-700 */
+.dark .bg-slate-200{ background-color: rgb(71 85 105) !important; }  /* slate-600 */
+
+/* Borders */
+.dark .border-slate-100 { border-color: rgb(30 41 59)  !important; }
+.dark .border-slate-200 { border-color: rgb(51 65 85)  !important; } /* slate-700 */
+.dark .border-slate-300 { border-color: rgb(71 85 105) !important; } /* slate-600 */
+
+/* Text — each step lightened by ~2 shades for readability */
+.dark .text-slate-900 { color: rgb(241 245 249) !important; }  /* → slate-100 */
+.dark .text-slate-800 { color: rgb(226 232 240) !important; }  /* → slate-200 */
+.dark .text-slate-700 { color: rgb(203 213 225) !important; }  /* → slate-300 */
+.dark .text-slate-600 { color: rgb(148 163 184) !important; }  /* → slate-400 */
+.dark .text-slate-500 { color: rgb(148 163 184) !important; }  /* → slate-400 */
+.dark .text-slate-400 { color: rgb(100 116 139) !important; }  /* → slate-500 (dimmer muted text) */
+
+/* Blue tones on dark backgrounds */
+.dark .text-blue-700  { color: rgb(147 197 253) !important; }  /* → blue-300 */
+.dark .text-blue-600  { color: rgb(96  165 250) !important; }  /* → blue-400 */
+.dark .text-blue-500  { color: rgb(147 197 253) !important; }  /* → blue-300 */
+.dark .bg-blue-50     { background-color: rgb(30 58 138 / 0.25) !important; }
+.dark .bg-blue-100    { background-color: rgb(30 58 138 / 0.4)  !important; }
+.dark .border-blue-200{ border-color: rgb(59 130 246 / 0.4) !important; }
+.dark .border-blue-400{ border-color: rgb(96 165 250 / 0.7) !important; }
+.dark .text-blue-200  { color: rgb(191 219 254) !important; }
+
+/* Emerald / green tones */
+.dark .text-emerald-700 { color: rgb(110 231 183) !important; }
+.dark .text-emerald-600 { color: rgb(110 231 183) !important; }
+.dark .bg-emerald-50    { background-color: rgb(6 78 59 / 0.3) !important; }
+.dark .bg-emerald-100   { background-color: rgb(6 78 59 / 0.4) !important; }
+.dark .border-emerald-200{ border-color: rgb(52 211 153 / 0.3) !important; }
+
+/* Amber tones */
+.dark .bg-amber-50     { background-color: rgb(120 53 15 / 0.3) !important; }
+.dark .bg-amber-100    { background-color: rgb(120 53 15 / 0.4) !important; }
+.dark .border-amber-200{ border-color: rgb(251 191 36 / 0.3) !important; }
+.dark .text-amber-700  { color: rgb(252 211 77) !important; }
+
+/* Red tones (error messages, danger zone) */
+.dark .text-red-600    { color: rgb(252 165 165) !important; }  /* → red-300 */
+.dark .text-red-700    { color: rgb(252 165 165) !important; }  /* → red-300 */
+.dark .bg-red-50       { background-color: rgb(127 29 29 / 0.3) !important; }
+.dark .border-red-200  { border-color: rgb(185 28  28 / 0.4) !important; }
+.dark .border-red-400  { border-color: rgb(248 113 113 / 0.6) !important; }
+
+/* Purple tones (admin badges) */
+.dark .text-purple-700 { color: rgb(216 180 254) !important; }  /* → purple-300 */
+.dark .bg-purple-100   { background-color: rgb(88 28 135 / 0.3) !important; }
+.dark .border-purple-200{ border-color: rgb(147 51 234 / 0.3) !important; }
+
+/* Form inputs */
+.dark input, .dark textarea {
+  background-color: rgb(30 41 59) !important;
+  color: rgb(226 232 240) !important;
+  border-color: rgb(71 85 105) !important;
+}
+.dark input::placeholder, .dark textarea::placeholder {
+  color: rgb(100 116 139) !important;
+}
+
+/* Select dropdowns */
+.dark select {
+  background-color: rgb(30 41 59) !important;
+  color: rgb(226 232 240) !important;
+  border-color: rgb(71 85 105) !important;
+}
+
+/* Tabs + header */
+.dark header { background-color: rgb(15 23 42) !important; border-color: rgb(51 65 85) !important; }
+.dark nav    { background-color: rgb(15 23 42) !important; border-color: rgb(51 65 85) !important; }
+.dark .shadow-sm { --tw-shadow: none; }
+
+/* Guide prose — full dark coverage */
+.dark .guide-prose h1,
+.dark .guide-prose h2,
+.dark .guide-prose h3   { color: rgb(226 232 240) !important; }
+.dark .guide-prose p    { color: rgb(203 213 225) !important; }
+.dark .guide-prose ul,
+.dark .guide-prose ol   { color: rgb(203 213 225) !important; }
+.dark .guide-prose li   { color: rgb(203 213 225) !important; }
+.dark .guide-prose a    { color: rgb(147 197 253) !important; }
+.dark .guide-prose strong { color: rgb(241 245 249) !important; }
+.dark .guide-prose blockquote {
+  border-color: rgb(96 165 250) !important;
+  color: rgb(148 163 184) !important;
+}
+.dark .guide-prose code {
+  background-color: rgb(51 65 85) !important;
+  color: rgb(147 197 253) !important;
+}
+.dark .guide-prose pre  { background-color: rgb(15 23 42) !important; }
+.dark .guide-prose pre code {
+  background-color: transparent !important;
+  color: rgb(203 213 225) !important;
+}
+.dark .guide-prose table { border-color: rgb(51 65 85) !important; }
+.dark .guide-prose th {
+  background-color: rgb(51 65 85) !important;
+  color: rgb(226 232 240) !important;
+  border-color: rgb(71 85 105) !important;
+}
+.dark .guide-prose td {
+  color: rgb(203 213 225) !important;
+  border-color: rgb(51 65 85) !important;
+}
+.dark .guide-prose hr { border-color: rgb(51 65 85) !important; }
+
+/* (report-section forced-light rules removed — all tabs now use dark: variants) */
+
+/* Print page prose — clean typographic styles for the print-only layout */
+.print-prose h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 0.5rem; color: #0f172a; line-height: 1.2; }
+.print-prose h2 { font-size: 1.1rem; font-weight: 700; margin: 1.4rem 0 0.5rem; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.2rem; }
+.print-prose h3 { font-size: 0.95rem; font-weight: 600; margin: 1rem 0 0.25rem; color: #1e293b; }
+.print-prose p  { margin: 0 0 0.6rem; line-height: 1.65; color: #334155; font-size: 0.9rem; }
+.print-prose ul { list-style: disc; padding-left: 1.25rem; margin: 0 0 0.6rem; color: #334155; font-size: 0.9rem; }
+.print-prose ol { list-style: decimal; padding-left: 1.25rem; margin: 0 0 0.6rem; color: #334155; font-size: 0.9rem; }
+.print-prose li { margin-bottom: 0.25rem; line-height: 1.5; }
+.print-prose code {
+  background: #f1f5f9; color: #1d4ed8; border-radius: 3px;
+  padding: 1px 4px; font-size: 0.82em; font-family: monospace;
+}
+.print-prose pre {
+  background: #f1f5f9; border-radius: 4px; padding: 0.6rem 0.9rem;
+  margin: 0 0 0.6rem; white-space: pre-wrap; word-break: break-word;
+}
+.print-prose pre code { background: transparent; padding: 0; color: #1e293b; font-size: 0.85em; }
+.print-prose strong { font-weight: 600; color: #0f172a; }
+.print-prose blockquote {
+  border-left: 3px solid #93c5fd; padding-left: 0.75rem;
+  color: #475569; margin: 0 0 0.6rem; font-style: italic;
+}
+.print-prose table { width: 100%; border-collapse: collapse; margin-bottom: 0.6rem; font-size: 0.85rem; }
+.print-prose th { background: #f8fafc; font-weight: 600; text-align: left; padding: 0.3rem 0.5rem; border: 1px solid #cbd5e1; }
+.print-prose td { padding: 0.3rem 0.5rem; border: 1px solid #cbd5e1; }
+
+/* ── @media print ───────────────────────────────────────────────────────── */
+@media print {
+  @page { margin: 1.8cm 1.5cm; }
+
+  /* Force light mode — never print dark backgrounds */
+  :root { color-scheme: light !important; }
+  html, body {
+    background: white !important;
+    color: #0f172a !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Strip all dark-mode overrides so print always renders light */
+  .dark body                { background: white !important; color: #0f172a !important; }
+  .dark .bg-white           { background-color: white !important; }
+  .dark .bg-slate-50        { background-color: #f8fafc !important; }
+  .dark .bg-slate-100       { background-color: #f1f5f9 !important; }
+  .dark .bg-slate-200       { background-color: #e2e8f0 !important; }
+  .dark .text-slate-900     { color: #0f172a !important; }
+  .dark .text-slate-800     { color: #1e293b !important; }
+  .dark .text-slate-700     { color: #334155 !important; }
+  .dark .text-slate-600     { color: #475569 !important; }
+  .dark .text-slate-500     { color: #64748b !important; }
+  .dark .text-slate-400     { color: #94a3b8 !important; }
+  .dark .border-slate-100   { border-color: #f1f5f9 !important; }
+  .dark .border-slate-200   { border-color: #e2e8f0 !important; }
+  .dark .border-slate-300   { border-color: #cbd5e1 !important; }
+  .dark input, .dark textarea, .dark select {
+    background-color: white !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+  }
+  .dark header, .dark nav   { background-color: white !important; border-color: #e2e8f0 !important; }
+
+  /* Ensure backgrounds and colors render */
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Hide chat panel and floating button */
+  .animate-slide-in, [title="Ask about this codebase"] { display: none !important; }
+
+  /* Remove shadows and transitions */
+  *, *::before, *::after { box-shadow: none !important; transition: none !important; }
+
+  /* Page break rules */
+  .print-prose h2 { page-break-before: auto; page-break-after: avoid; }
+  .print-prose h3 { page-break-after: avoid; }
+  .print-prose div { page-break-inside: avoid; }
+  .print-prose pre, .print-prose blockquote { page-break-inside: avoid; }
+  .print-prose li  { page-break-inside: avoid; }
+}
+
+/* ── Compact mode — reduce card padding and section spacing ─────────────── */
+html[data-compact="1"] .p-6    { padding: 0.75rem !important; }
+html[data-compact="1"] .p-8    { padding: 1rem    !important; }
+html[data-compact="1"] .sm\:p-8 { padding: 1rem   !important; }
+html[data-compact="1"] .py-8   { padding-top: 1.25rem !important; padding-bottom: 1.25rem !important; }
+html[data-compact="1"] .py-10  { padding-top: 1.5rem  !important; padding-bottom: 1.5rem  !important; }
+html[data-compact="1"] .py-20  { padding-top: 3rem    !important; padding-bottom: 3rem    !important; }
+html[data-compact="1"] .mb-6   { margin-bottom: 0.75rem !important; }
+html[data-compact="1"] .mb-8   { margin-bottom: 1rem    !important; }
+html[data-compact="1"] .space-y-5 > * + * { margin-top: 0.5rem  !important; }
+html[data-compact="1"] .space-y-6 > * + * { margin-top: 0.75rem !important; }
+
+/* ── Code font — override mono with system sans-serif ───────────────────── */
+html[data-code-font="sans"] .font-mono,
+html[data-code-font="sans"] code,
+html[data-code-font="sans"] pre {
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
